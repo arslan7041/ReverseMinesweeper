@@ -1,0 +1,85 @@
+#ifndef MINESWEEPER_H_INCLUDED
+#define MINESWEEPER_H_INCLUDED
+#include <vector>
+#include <string>
+using namespace std;
+
+class Minesweeper
+{
+    private:
+        string playerName;
+        int minesFound;
+        static int gridSize;
+        int ROWS;
+        int COLUMNS;
+    public:
+        Minesweeper()
+        {
+            playerName = "Player";
+            minesFound = 0;
+            ROWS = gridSize;
+            COLUMNS = gridSize;
+        }
+        string get_playerName()
+        {
+            return playerName;
+        }
+        int get_minesFound()
+        {
+            return minesFound;
+        }
+        int get_ROWS()
+        {
+            return ROWS;
+        }
+        int get_COLUMNS()
+        {
+            return COLUMNS;
+        }
+        static int get_gridSize()
+        {
+            return gridSize;
+        }
+        void set_playerName(string p)
+        {
+            playerName = p;
+        }
+        void set_minesFound(int m)
+        {
+            if(m > 0)
+                minesFound = m;
+        }
+        void set_ROWS(int r)
+        {
+            if(r == gridSize)
+                ROWS = r;
+        }
+
+        void set_COLUMNS(int c)
+        {
+            if(c== gridSize)
+                COLUMNS = c;
+        }
+        void clrscr()
+        {
+            #ifdef _WIN32
+                std::system("cls");
+            #else
+
+                std::system ("clear");
+            #endif
+        }
+        void Menu();
+        void How_To_Play();
+        void About();
+        bool Verify();
+        int Get_Difficulty_Level();
+        void Create_Random_Grid (vector<vector<int> >&, int, int);
+        void Play_Game(vector<vector<int> > &, vector<vector<string> > &, vector<vector<string> >&, int, int, int);
+        void Reprint_Grid(vector<vector<string> >&, int, int, int , int);
+        void Print_Solved_Grid(vector<vector<string> >&, vector<vector<int> >&, int, int);
+        string Int_to_String(int);
+        int Get_Number_of_Mines(vector<vector<int> > &, int, int);
+};
+
+#endif // MINESWEEPER_H_INCLUDED
